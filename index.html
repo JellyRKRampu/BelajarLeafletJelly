@@ -58,6 +58,17 @@
         .setLatLng([-6.1954, 106.8272])
         .setContent("I am a standalone popup.")
         .openOn(map);
+      // Event klik pada map tanpa feature
+      var popup = L.popup();
+
+      function onMapClick(e) {
+        popup
+          .setLatLng(e.latlng)
+          .setContent("You clicked the map at " + e.latlng.toString())
+          .openOn(map);
+      }
+
+      map.on("click", onMapClick);
     </script>
   </body>
 </html>
