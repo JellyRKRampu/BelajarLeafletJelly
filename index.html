@@ -25,12 +25,39 @@
   <body>
     <div id="map"></div>
     <script>
+      // Mendefinisikan peta
       var map = L.map("map").setView([-6.1754, 106.8272], 13);
+      // Mendefinisikan basemap
       L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
         maxZoom: 19,
         attribution:
           '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
       }).addTo(map);
+      // Menambahkan titik
+      var marker = L.marker([-6.1754, 106.8272]).addTo(map);
+      // Menambahkan lingkaran radius 1000 meter
+      var circle = L.circle([-6.1754, 106.8272], {
+        color: "red",
+        fillColor: "#f03",
+        fillOpacity: 0.5,
+        radius: 1000,
+      }).addTo(map);
+      // Menambahkan polygon
+      var polygon = L.polygon([
+        [-6.17, 106.82],
+        [-6.18, 106.82],
+        [-6.18, 106.83],
+        [-6.17, 106.83],
+      ]).addTo(map);
+      // Menambahkan Popup
+      marker.bindPopup("<b>Hello world!</b><br>I am a popup.").openPopup();
+      circle.bindPopup("I am a circle.");
+      polygon.bindPopup("I am a polygon.");
+      // Menambahkan Popup Stand alone
+      var popup = L.popup()
+        .setLatLng([-6.1954, 106.8272])
+        .setContent("I am a standalone popup.")
+        .openOn(map);
     </script>
   </body>
 </html>
